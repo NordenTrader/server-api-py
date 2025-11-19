@@ -1,6 +1,6 @@
 """
-ion-server-api-py
-High-performance TCP client for IonTrader platform
+nordentrader-server-api-py
+High-performance TCP client for NordenTrader platform
 Supports real-time quotes, trades, balance, user & symbol events
 """
 
@@ -40,9 +40,9 @@ class EventEmitter:
                 print(f"[EventEmitter] Error in listener for '{event}': {e}")
 
 
-class IONPlatform:
+class NTPlatform:
     """
-    IONPlatform - TCP client for IonTrader
+    NTPlatform - TCP client for NordenTrader
 
     Args:
         url: Host and port (e.g., 'host:8080')
@@ -50,7 +50,7 @@ class IONPlatform:
         options: Configuration dict with keys:
             - auto_subscribe: List[str] - Auto-subscribe channels
             - ignore_events: bool - Disable event emission
-            - prefix: str - Event prefix (default: 'ion')
+            - prefix: str - Event prefix (default: 'nor')
             - mode: str - 'live' || 'demo' || ...
         broker: Optional broker object
         ctx: Optional context object
@@ -76,7 +76,7 @@ class IONPlatform:
 
         options = options or {}
         self.ignore_events = options.get('ignore_events', False)
-        self.prefix = options.get('prefix', 'ion')
+        self.prefix = options.get('prefix', 'nor')
         self.mode = options.get('mode', 'live')
         self.auto_subscribe_channels = options.get('auto_subscribe', [])
 
@@ -106,7 +106,7 @@ class IONPlatform:
         try:
             self.reader, self.writer = await asyncio.open_connection(host, port)
             self.connected = True
-            print(f"[ION:{self.name}] Connected to {self.url}")
+            print(f"[NT:{self.name}] Connected to {self.url}")
 
             # Start reading first
             self._read_task = asyncio.create_task(self._read_loop())
@@ -116,7 +116,7 @@ class IONPlatform:
                 asyncio.create_task(self._auto_subscribe())
 
         except Exception as e:
-            print(f"[ION:{self.name}] Connection failed: {e}")
+            print(f"[NT:{self.name}] Connection failed: {e}")
             if self.alive:
                 await self._reconnect()
 
@@ -139,10 +139,10 @@ class IONPlatform:
                     if line.strip():
                         self._handle_data(line)
         except Exception as e:
-            print(f"[ION:{self.name}] Read error: {e}")
+            print(f"[NT:{self.name}] Read error: {e}")
         finally:
             self.connected = False
-            print(f"[ION:{self.name}] Connection closed")
+            print(f"[NT:{self.name}] Connection closed")
             if self.alive:
                 await self._reconnect()
 
@@ -151,9 +151,9 @@ class IONPlatform:
         await asyncio.sleep(AUTO_SUBSCRIBE_DELAY_MS / 1000)
         try:
             await self.subscribe(self.auto_subscribe_channels)
-            print(f"[ION:{self.name}] Auto-subscribed: {', '.join(self.auto_subscribe_channels)}")
+            print(f"[NT:{self.name}] Auto-subscribed: {', '.join(self.auto_subscribe_channels)}")
         except Exception as e:
-            print(f"[ION:{self.name}] Auto-subscribe failed: {e}")
+            print(f"[NT:{self.name}] Auto-subscribe failed: {e}")
 
     def _handle_data(self, data: str):
         """Handle incoming TCP data"""
@@ -185,7 +185,7 @@ class IONPlatform:
                     self._emit('security:reindex', parsed[1])
 
                 else:
-                    print(f"[ION:{self.name}] Unknown array message: {parsed}")
+                    print(f"[NT:{self.name}] Unknown array message: {parsed}")
 
                 return
 
@@ -204,12 +204,12 @@ class IONPlatform:
                             future.set_result(parsed)
                     return
 
-                print(f"[ION:{self.name}] Unknown message: {parsed}")
+                print(f"[NT:{self.name}] Unknown message: {parsed}")
 
         except json.JSONDecodeError as e:
-            print(f"[ION:{self.name}] Parse error: {e} | Data: {data}")
+            print(f"[NT:{self.name}] Parse error: {e} | Data: {data}")
         except Exception as e:
-            print(f"[ION:{self.name}] Handle error: {e}")
+            print(f"[NT:{self.name}] Handle error: {e}")
 
     def _handle_quote(self, arr: List):
         """Handle quote message: ["t", symbol, bid, ask, timestamp]"""
@@ -323,7 +323,7 @@ class IONPlatform:
             Response dictionary
         """
         if not self.connected:
-            raise ConnectionError(f"[ION:{self.name}] Not connected")
+            raise ConnectionError(f"[NT:{self.name}] Not connected")
 
         ext_id = payload.get('extID', str(uuid.uuid4())[:12])
         payload['extID'] = ext_id
@@ -339,7 +339,7 @@ class IONPlatform:
             if ext_id in self.pending:
                 fut = self.pending.pop(ext_id)
                 if not fut.done():
-                    fut.set_exception(TimeoutError(f"[ION:{self.name}] Timeout for extID: {ext_id}"))
+                    fut.set_exception(TimeoutError(f"[NT:{self.name}] Timeout for extID: {ext_id}"))
 
         asyncio.create_task(timeout_handler())
 
@@ -398,7 +398,7 @@ class IONPlatform:
 
         async def do_reconnect():
             await asyncio.sleep(RECONNECT_DELAY_MS / 1000)
-            print(f"[ION:{self.name}] Reconnecting...")
+            print(f"[NT:{self.name}] Reconnecting...")
             await self._create_socket()
 
         self._reconnect_task = asyncio.create_task(do_reconnect())

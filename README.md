@@ -1,18 +1,18 @@
 <div align="center">
 
-# ion-server-api-py
+# NordenTrader Server Api Py
 
-**Ultra-low latency Python TCP client for [IonTrader](https://iontrader.com)**  
+**Ultra-low latency Python TCP client for [NordenTrader](https://nordentrader.com)**  
 Real-time market data, trade execution, balance & user management via TCP.
 
-![PyPI](https://img.shields.io/pypi/v/ion-server-api-py?color=green)
+![PyPI](https://img.shields.io/pypi/v/nordentrader-server-api-py?color=green)
 ![Python](https://img.shields.io/badge/python-3.8%2B-blue)
 ![License](https://img.shields.io/badge/license-MIT-blue)
-![Downloads](https://img.shields.io/pypi/dm/ion-server-api-py)
+![Downloads](https://img.shields.io/pypi/dm/nordentrader-server-api-py)
 
 > **Server-to-Server (S2S) integration** — ideal for brokers, CRMs, HFT bots, and back-office systems.
 
-[Documentation](https://iontrader.com/tcp) · [Examples](./example.py) · [Report Bug](https://github.com/iontrader/server-api-py/issues)
+[Documentation](https://nordentrader.com/tcp) · [Examples](./example.py) · [Report Bug](https://github.com/nordentrader/server-api-py/issues)
 
 </div>
 
@@ -38,13 +38,13 @@ Real-time market data, trade execution, balance & user management via TCP.
 ## Installation
 
 ```bash
-pip install ion-server-api-py
+pip install nordentrader-server-api-py
 ```
 
 ### From Source
 
 ```bash
-git clone https://github.com/iontrader/server-api-py
+git clone https://github.com/nordentrader/server-api-py
 cd server-api-py
 pip install -e .
 ```
@@ -55,12 +55,12 @@ pip install -e .
 
 ```python
 import asyncio
-from ion_platform import IONPlatform
+from nt_platform import NTPlatform
 
 async def main():
     # Initialize with minimal config
-    platform = IONPlatform(
-        "broker.iontrader.com:8080",      # Host:port
+    platform = NTPlatform(
+        "broker.nordentrader.com:8080",      # Host:port
         "my-trading-bot",                  # Name
         options={
             'auto_subscribe': ['EURUSD', 'BTCUSD']
@@ -264,12 +264,12 @@ See [`example.py`](./example.py)
 options = {
     'auto_subscribe': ['EURUSD', 'GBPUSD'],  # Auto-subscribe on connect
     'ignore_events': False,                   # Disable all event emission
-    'prefix': 'ion',                          # Event prefix (reserved)
+    'prefix': 'nor',                          # Event prefix (reserved)
     'mode': 'live'                            # Environment: 'live' or 'demo'
 }
 
-platform = IONPlatform(
-    "broker.iontrader.com:8080",
+platform = NTPlatform(
+    "broker.nordentrader.com:8080",
     "my-bot",
     options=options,
     token="your-jwt-token"
@@ -303,7 +303,7 @@ except Exception as e:
 
 ```python
 async def main():
-    platform = IONPlatform(...)
+    platform = NTPlatform(...)
     
     # Run multiple tasks concurrently
     await asyncio.gather(
@@ -322,7 +322,7 @@ async def price_monitor():
         # Do something
 
 async def main():
-    platform = IONPlatform(...)
+    platform = NTPlatform(...)
     
     # Start background task
     task = asyncio.create_task(price_monitor())
@@ -339,16 +339,16 @@ async def main():
 
 ## Documentation
 
-- **TCP API**: [https://iontrader.com/tcp](https://iontrader.com/tcp)
-- **Client API**: [https://iontrader.com/client-api](https://iontrader.com/client-api)
-- **FIX API**: [https://iontrader.com/fix-api](https://iontrader.com/fix-api)
+- **TCP API**: [https://nordentrader.com/tcp](https://nordentrader.com/tcp)
+- **Client API**: [https://nordentrader.com/client-api](https://nordentrader.com/client-api)
+- **FIX API**: [https://nordentrader.com/fix-api](https://nordentrader.com/fix-api)
 
 ---
 
 ## Requirements
 
 - **Python 3.8 or higher**
-- Valid **IonTrader JWT token**
+- Valid **NordenTrader JWT token**
 - No external dependencies (pure stdlib)
 
 ---
@@ -357,7 +357,7 @@ async def main():
 
 ```bash
 # Clone repository
-git clone https://github.com/iontrader/server-api-py
+git clone https://github.com/nordentrader/server-api-py
 cd server-api-py
 
 # Install in development mode
@@ -386,6 +386,6 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 **Made with passion for high-frequency trading**
 
-[iontrader.com](https://iontrader.com) · [GitHub](https://github.com/iontrader/server-api-py)
+[nordentrader.com](https://nordentrader.com) · [GitHub](https://github.com/nordentrader/server-api-py)
 
 </div>

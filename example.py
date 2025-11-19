@@ -1,19 +1,19 @@
 """
-IonTrader API Example
+NordenTrader API Example
 Demonstrates full event handling and subscribe/unsubscribe
 """
 
 import asyncio
 import time
-from ion_platform import IONPlatform
+from nt_platform import NTPlatform
 
 
 async def main():
-    url = "broker.iontrader.com:8080"
-    name = "ion-example-python"
+    url = "example.host:8080"
+    name = "nt-example-python"
     token = "your-jwt-auth-token"
 
-    platform = IONPlatform(
+    platform = NTPlatform(
         url,
         name,
         options={

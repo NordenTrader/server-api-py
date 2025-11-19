@@ -1,10 +1,10 @@
 """
-ion-server-api-py
-Ultra-low latency Python TCP client for IonTrader platform
+nordentrader-server-api-py
+Ultra-low latency Python TCP client for NordenTrader platform
 """
 
-from .ion_platform import IONPlatform, EventEmitter
+from .nt_platform import NTPlatform, EventEmitter
 
-__version__ = "1.0.0"
-__author__ = "IonTrader"
-__all__ = ["IONPlatform", "EventEmitter"]
+__version__ = "1.0.1"
+__author__ = "NordenTrader"
+__all__ = ["NTPlatform", "EventEmitter"]
