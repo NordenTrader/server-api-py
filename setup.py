@@ -4,14 +4,14 @@ with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 setup(
-    name="nordentrader-server-api-py",
-    version="1.0.1",
-    author="NordenTrader",
-    author_email="support@nordentrader.com",
-    description="Ultra-low latency Python TCP client for NordenTrader platform",
+    name="scaletrade-server-api-py",
+    version="1.0.2",
+    author="ScaleTrade",
+    author_email="support@scaletrade.com",
+    description="Ultra-low latency Python TCP client for ScaleTrade platform",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/nordentrader/server-api-py",
+    url="https://github.com/scaletrade/server-api-py",
     packages=find_packages(),
     classifiers=[
         "Development Status :: 5 - Production/Stable",
@@ -31,10 +31,10 @@ setup(
     install_requires=[
         # No external dependencies - uses only Python stdlib
     ],
-    keywords="nordentrader trading forex tcp api realtime websocket market-data",
+    keywords="scaletrade trading forex tcp api realtime websocket market-data",
     project_urls={
-        "Bug Reports": "https://github.com/nordentrader/server-api-py/issues",
-        "Documentation": "https://nordentrader.com/tcp",
-        "Source": "https://github.com/nordentrader/server-api-py",
+        "Bug Reports": "https://github.com/scaletrade/server-api-py/issues",
+        "Documentation": "https://scaletrade.com/tcp",
+        "Source": "https://github.com/scaletrade/server-api-py",
     },
 )

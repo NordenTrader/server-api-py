@@ -1,19 +1,19 @@
 """
-NordenTrader API Example
+ScaleTrade API Example
 Demonstrates full event handling and subscribe/unsubscribe
 """
 
 import asyncio
 import time
-from nt_platform import NTPlatform
+from st_platform import STPlatform
 
 
 async def main():
     url = "example.host:8080"
-    name = "nt-example-python"
+    name = "scaletrade-example-python"
     token = "your-jwt-auth-token"
 
-    platform = NTPlatform(
+    platform = STPlatform(
         url,
         name,
         options={

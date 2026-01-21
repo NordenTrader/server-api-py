@@ -1,18 +1,18 @@
 <div align="center">
 
-# NordenTrader Server Api Py
+# ScaleTrade Server Api Py
 
-**Ultra-low latency Python TCP client for [NordenTrader](https://nordentrader.com)**  
+**Ultra-low latency Python TCP client for [ScaleTrade](https://scaletrade.com)**  
 Real-time market data, trade execution, balance & user management via TCP.
 
-![PyPI](https://img.shields.io/pypi/v/nordentrader-server-api-py?color=green)
+![PyPI](https://img.shields.io/pypi/v/scaletrade-server-api-py?color=green)
 ![Python](https://img.shields.io/badge/python-3.8%2B-blue)
 ![License](https://img.shields.io/badge/license-MIT-blue)
-![Downloads](https://img.shields.io/pypi/dm/nordentrader-server-api-py)
+![Downloads](https://img.shields.io/pypi/dm/scaletrade-server-api-py)
 
 > **Server-to-Server (S2S) integration** — ideal for brokers, CRMs, HFT bots, and back-office systems.
 
-[Documentation](https://nordentrader.com/tcp) · [Examples](./example.py) · [Report Bug](https://github.com/nordentrader/server-api-py/issues)
+[Documentation](https://scaletrade.com/tcp) · [Examples](./example.py) · [Report Bug](https://github.com/scaletrade/server-api-py/issues)
 
 </div>
 
@@ -38,13 +38,13 @@ Real-time market data, trade execution, balance & user management via TCP.
 ## Installation
 
 ```bash
-pip install nordentrader-server-api-py
+pip install scaletrade-server-api-py
 ```
 
 ### From Source
 
 ```bash
-git clone https://github.com/nordentrader/server-api-py
+git clone https://github.com/scaletrade/server-api-py
 cd server-api-py
 pip install -e .
 ```
@@ -55,12 +55,12 @@ pip install -e .
 
 ```python
 import asyncio
-from nt_platform import NTPlatform
+from nt_platform import STPlatform
 
 async def main():
     # Initialize with minimal config
-    platform = NTPlatform(
-        "broker.nordentrader.com:8080",      # Host:port
+    platform = STPlatform(
+        "broker.scaletrade.com:8080",      # Host:port
         "my-trading-bot",                  # Name
         options={
             'auto_subscribe': ['EURUSD', 'BTCUSD']
@@ -268,8 +268,8 @@ options = {
     'mode': 'live'                            # Environment: 'live' or 'demo'
 }
 
-platform = NTPlatform(
-    "broker.nordentrader.com:8080",
+platform = STPlatform(
+    "broker.scaletrade.com:8080",
     "my-bot",
     options=options,
     token="your-jwt-token"
@@ -303,7 +303,7 @@ except Exception as e:
 
 ```python
 async def main():
-    platform = NTPlatform(...)
+    platform = STPlatform(...)
     
     # Run multiple tasks concurrently
     await asyncio.gather(
@@ -322,7 +322,7 @@ async def price_monitor():
         # Do something
 
 async def main():
-    platform = NTPlatform(...)
+    platform = STPlatform(...)
     
     # Start background task
     task = asyncio.create_task(price_monitor())
@@ -339,16 +339,16 @@ async def main():
 
 ## Documentation
 
-- **TCP API**: [https://nordentrader.com/tcp](https://nordentrader.com/tcp)
-- **Client API**: [https://nordentrader.com/client-api](https://nordentrader.com/client-api)
-- **FIX API**: [https://nordentrader.com/fix-api](https://nordentrader.com/fix-api)
+- **TCP API**: [https://scaletrade.com/tcp](https://scaletrade.com/tcp)
+- **Client API**: [https://scaletrade.com/client-api](https://scaletrade.com/client-api)
+- **FIX API**: [https://scaletrade.com/fix-api](https://scaletrade.com/fix-api)
 
 ---
 
 ## Requirements
 
 - **Python 3.8 or higher**
-- Valid **NordenTrader JWT token**
+- Valid **ScaleTrade JWT token**
 - No external dependencies (pure stdlib)
 
 ---
@@ -357,7 +357,7 @@ async def main():
 
 ```bash
 # Clone repository
-git clone https://github.com/nordentrader/server-api-py
+git clone https://github.com/scaletrade/server-api-py
 cd server-api-py
 
 # Install in development mode
@@ -386,6 +386,6 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 **Made with passion for high-frequency trading**
 
-[nordentrader.com](https://nordentrader.com) · [GitHub](https://github.com/nordentrader/server-api-py)
+[scaletrade.com](https://scaletrade.com) · [GitHub](https://github.com/scaletrade/server-api-py)
 
 </div>
